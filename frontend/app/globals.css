@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --mp-primary: #6c63ff;
+  --mp-secondary: #8b7cf6;
+  --mp-accent: #ff7eb6;
+  --mp-bg: #f8f7ff;
+  --mp-text: #25243a;
+  --mp-muted: #5c5a72;
+  --mp-surface: #ffffff;
+  --mp-line: rgb(37 36 58 / 12%);
+  --mp-soft: rgb(108 99 255 / 12%);
+  color-scheme: light;
+}
+
+.dark {
+  --mp-bg: #12111c;
+  --mp-text: #f4f3ff;
+  --mp-muted: #c2c0d4;
+  --mp-surface: #1c1b2b;
+  --mp-line: rgb(244 243 255 / 14%);
+  --mp-soft: rgb(139 124 246 / 18%);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 8%, rgb(108 99 255 / 18%), transparent 36%),
+    radial-gradient(circle at 88% 90%, rgb(255 126 182 / 16%), transparent 32%),
+    var(--mp-bg);
+  color: var(--mp-text);
+  font-family: "Segoe UI", "Yu Gothic", sans-serif;
+}
+
+.font-display {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+:focus-visible {
+  outline: 3px solid var(--mp-primary);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgb(108 99 255 / 28%);
+}
+
+.surface {
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-line);
+  border-radius: 1.5rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: var(--mp-primary);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 10px 30px rgb(108 99 255 / 28%);
+}
+
+.btn-primary:hover {
+  background: #5b53f0;
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--mp-line);
+  background: var(--mp-surface);
+  padding: 0.75rem 1.15rem;
+  font-weight: 600;
+  color: var(--mp-text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--mp-primary);
+}
+
+.field {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--mp-line);
+  background: var(--mp-bg);
+  color: var(--mp-text);
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+}
+
+.path-draw {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: draw-path 1.4s ease forwards 0.35s;
+}
+
+@keyframes draw-path {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes float-y {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-slow {
+  animation: float-y 4.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .path-draw,
+  .float-slow {
+    animation: none;
+  }
+
+  .path-draw {
+    stroke-dashoffset: 0;
+  }
+}
